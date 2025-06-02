@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Entry for the Classes</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        #container {
+            max-width: 1100px;
+            margin: 48px auto 32px auto;
+            background: #fffbe7;
+            border-radius: 22px;
+            box-shadow: 0 10px 40px rgba(44,62,80,0.18);
+            padding: 40px 32px 32px 32px;
+            border: 3px solid #ffb347;
+        }
+        h1 {
+            color: #ff9800;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-shadow: 1px 2px 8px #fff3e0;
+        }
+        p {
+            color: #5a6b82;
+            font-size: 1.18rem;
+            text-align: center;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 28px;
+            background: #fffde7;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(255, 193, 7, 0.10);
+        }
+        th, td {
+            border: 1.5px solid #ffe082;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        th {
+            background: linear-gradient(90deg, #ffd54f 60%, #fffde7 100%);
+            color: #ff9800;
+            font-weight: 700;
+            font-size: 1.12rem;
+            letter-spacing: 1px;
+        }
+        th.sno, td.sno {
+            background: #fff3e0;
+            font-weight: bold;
+            color: #ff9800;
+            width: 60px;
+            font-size: 1.08rem;
+        }
+        input[type="text"] {
+            width: 80px;
+            padding: 7px;
+            border-radius: 6px;
+            border: 2px solid #ffe082;
+            font-size: 1.08rem;
+            text-align: center;
+            background: #fffde7;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 3px #fffde7;
+        }
+        input[type="text"]:focus {
+            border: 2px solid #ff9800;
+            outline: none;
+            background: #fff8e1;
+            box-shadow: 0 0 8px #ffd54f;
+        }
+        .back-btn, .analysis-btn {
+            margin: 28px 12px 0 0;
+            background: linear-gradient(90deg, #ff9800 60%, #ffd54f 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1.08rem;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(255, 193, 7, 0.13);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .back-btn:hover, .analysis-btn:hover {
+            background: linear-gradient(90deg, #ffb347 60%, #ff9800 100%);
+            color: #fffbe7;
+        }
+        #error-message {
+            color: #d32f2f;
+            font-size: 1.08rem;
+            text-align: center;
+            margin-top: 14px;
+            min-height: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: #fff3e0;
+            border-radius: 6px;
+            padding: 4px 0;
+        }
+        @media (max-width: 900px) {
+            #container {
+                padding: 8px 2px;
+            }
+            table, th, td {
+                font-size: 0.98rem;
+            }
+            input[type="text"] {
+                width: 60px;
+            }
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+        /* Add a subtle animation for focus */
+        input[type="text"]:focus {
+            animation: glow 0.5s;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 0 #ffd54f; }
+            100% { box-shadow: 0 0 8px #ffd54f; }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button class="analysis-btn" id="reset-values" style="margin-bottom:18px;">Reset Values</button>
+        <h1>Marks Entry for the Classes</h1>
+        <p>Enter marks for classes between <span style="color:#ff9800;font-weight:700;">0 and 100</span>.</p>
+        <div id="error-message"></div>
+        <table id="marks-table">
+            <thead>
+                <tr>
+                    <th class="sno">S. No.</th>
+                    <th id="class1-header">Class 1</th>
+                    <th id="class2-header">Class 2</th>
+                    <th id="class3-header">Class 3</th>
+                    <th id="class4-header">Class 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be inserted by JavaScript -->
+            </tbody>
+        </table>
+        <div class="button-row">
+            <button class="back-btn" onclick="window.location.href='index.html'">Back to Class Entry</button>
+            <button class="analysis-btn" id="show-analysis">Show analysis</button>
+        </div>
+    </div>
+    <script>
+        // Get class names from localStorage (set in index.html)
+        const classNames = [
+            localStorage.getItem('class1') || 'Class 1',
+            localStorage.getItem('class2') || 'Class 2',
+            localStorage.getItem('class3') || 'Class 3',
+            localStorage.getItem('class4') || 'Class 4'
+        ];
+
+        // Set table headers
+        document.getElementById('class1-header').textContent = classNames[0];
+        document.getElementById('class2-header').textContent = classNames[1];
+        document.getElementById('class3-header').textContent = classNames[2];
+        document.getElementById('class4-header').textContent = classNames[3];
+
+        // Generate 75 rows (1 to 75) with S. No.
+        const tbody = document.querySelector('#marks-table tbody');
+        for (let i = 1; i <= 75; i++) {
+            const tr = document.createElement('tr');
+            // S. No. column
+            const tdSno = document.createElement('td');
+            tdSno.className = "sno";
+            tdSno.textContent = i;
+            tr.appendChild(tdSno);
+            // 4 class columns
+            for (let j = 0; j < 4; j++) {
+                const td = document.createElement('td');
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Marks`;
+                input.setAttribute('data-row', i - 1);
+                input.setAttribute('data-col', j);
+                td.appendChild(input);
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+        // Restore marks if available in localStorage
+        const savedMarks = JSON.parse(localStorage.getItem('marksData') || 'null');
+        if (savedMarks && Array.isArray(savedMarks) && savedMarks.length === 4) {
+            for (let col = 0; col < 4; col++) {
+                for (let row = 0; row < 75; row++) {
+                    const val = savedMarks[col][row];
+                    if (val !== null && val !== undefined) {
+                        const input = document.querySelector(`input[data-row="${row}"][data-col="${col}"]`);
+                        if (input) input.value = val;
+                    }
+        }
+    }
+}
+
+// Reset Values button functionality
+document.getElementById('reset-values').addEventListener('click', function() {
+    // Clear all input fields
+    for (let col = 0; col < 4; col++) {
+        for (let row = 0; row < 75; row++) {
+            const input = document.querySelector(`input[data-row="${row}"][data-col="${col}"]`);
+            if (input) input.value = '';
+        }
+    }
+    // Remove marksData from localStorage
+    localStorage.removeItem('marksData');
+    // Optionally clear error message
+    if (typeof errorMessage !== "undefined" && errorMessage) errorMessage.textContent = "";
+});
+
+        // Arrow key navigation and validation
+        const errorMessage = document.getElementById('error-message');
+        const inputs = Array.from(document.querySelectorAll('#marks-table input[type="text"]'));
+        const rows = 75, cols = 4;
+
+        // Helper to check if value is valid
+        function isValidMark(val) {
+            return /^\d+$/.test(val) && Number(val) >= 0 && Number(val) <= 100;
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('keydown', function(e) {
+                const row = parseInt(this.getAttribute('data-row'));
+                const col = parseInt(this.getAttribute('data-col'));
+                let nextInput;
+
+                // Prevent navigation if value is invalid
+                if (
+                    this.value !== "" &&
+                    !isValidMark(this.value) &&
+                    (e.key.startsWith('Arrow') || e.key === 'Tab')
+                ) {
+                    e.preventDefault();
+                    errorMessage.textContent = "Marks must be between 0 and 100";
+                    this.style.borderColor = "#d32f2f";
+                    this.focus();
+                    return;
+                }
+
+                if (e.key === 'ArrowRight') {
+                    if (col < cols - 1) {
+                        nextInput = document.querySelector(`input[data-row="${row}"][data-col="${col + 1}"]`);
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    if (col > 0) {
+                        nextInput = document.querySelector(`input[data-row="${row}"][data-col="${col - 1}"]`);
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    if (row < rows - 1) {
+                        nextInput = document.querySelector(`input[data-row="${row + 1}"][data-col="${col}"]`);
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    if (row > 0) {
+                        nextInput = document.querySelector(`input[data-row="${row - 1}"][data-col="${col}"]`);
+                    }
+                }
+                if (nextInput) {
+                    e.preventDefault();
+                    nextInput.focus();
+                }
+            });
+
+            input.addEventListener('input', function() {
+                if (this.value !== "" && !isValidMark(this.value)) {
+                    errorMessage.textContent = "Marks must be between 0 and 100";
+                    this.style.borderColor = "#d32f2f";
+                    this.focus();
+                    // Remove any non-digit characters
+                    this.value = this.value.replace(/[^\d]/g, '');
+                } else {
+                    errorMessage.textContent = "";
+                    this.style.borderColor = "#cfd8dc";
+                }
+            });
+
+            // Prevent blur if value is invalid
+            input.addEventListener('blur', function(e) {
+                if (this.value !== "" && !isValidMark(this.value)) {
+                    errorMessage.textContent = "Marks must be between 0 and 100";
+                    this.style.borderColor = "#d32f2f";
+                    setTimeout(() => this.focus(), 0);
+                } else {
+                    errorMessage.textContent = "";
+                    this.style.borderColor = "#cfd8dc";
+                }
+            });
+        });
+
+// Show analysis button: Save marks and go to analysis.html
+document.getElementById('show-analysis').addEventListener('click', function() {
+    // Collect marks data for all classes
+    const marksData = [[], [], [], []];
+    const rows = 75, cols = 4;
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const input = document.querySelector(`input[data-row="${row}"][data-col="${col}"]`);
+            let val = input.value.trim();
+            marksData[col][row] = val === "" ? null : Number(val);
+        }
+    }
+    // Save to localStorage
+    localStorage.setItem('marksData', JSON.stringify(marksData));
+    // Redirect to analysis.html
+    window.location.href = 'analysis.html';
+});
+
+
+    </script>
+</body>
+</html>

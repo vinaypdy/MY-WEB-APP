@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACR HELPER</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            background: #f4f6fb;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 32px 32px 32px;
+            text-align: center;
+        }
+        h1 {
+            color: #2d3a4b;
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        p {
+            color: #5a6b82;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        .logo {
+            width: 64px;
+            margin-bottom: 18px;
+        }
+        @media (max-width: 600px) {
+            #app {
+                padding: 24px 8px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img class="logo" src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="ACR Logo" />
+        <h1>ACR HELPER</h1>
+        <p>Your assistant for Automated Content Review.<br>
+        This is a simple web application.</p>
+        <form id="class-form" style="margin-top: 32px;">
+            <label for="class1">Class 1:</label>
+            <input type="text" id="class1" name="class1" placeholder="Enter class name" /><br><br>
+            <label for="class2">Class 2:</label>
+            <input type="text" id="class2" name="class2" placeholder="Enter class name" /><br><br>
+            <label for="class3">Class 3:</label>
+            <input type="text" id="class3" name="class3" placeholder="Enter class name" /><br><br>
+            <label for="class4">Class 4:</label>
+            <input type="text" id="class4" name="class4" placeholder="Enter class name" /><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="../src/app.js"></script>
+<script>
+document.getElementById('class-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    localStorage.setItem('class1', document.getElementById('class1').value || 'Class 1');
+    localStorage.setItem('class2', document.getElementById('class2').value || 'Class 2');
+    localStorage.setItem('class3', document.getElementById('class3').value || 'Class 3');
+    localStorage.setItem('class4', document.getElementById('class4').value || 'Class 4');
+    window.location.href = 'marks-entry.html';
+});
+</script>
+</body>
+</html>

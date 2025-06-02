@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - ACR HELPER</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        #container {
+            max-width: 1200px;
+            margin: 40px auto 32px auto;
+            background: #f8fff8;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+            padding: 36px 28px 32px 28px;
+        }
+        h1 {
+            color: #185a9d;
+            font-size: 2.3rem;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 32px 0 40px 0;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+        }
+        th, td {
+            border: 1px solid #b2dfdb;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        th {
+            background: #43cea2;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) td {
+            background: #f1f8e9;
+        }
+        tr:nth-child(odd) td {
+            background: #e3f2fd;
+        }
+        .section-title {
+            color: #185a9d;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .back-btn {
+            margin: 24px auto 0 auto;
+            display: block;
+            background: linear-gradient(90deg, #185a9d 60%, #43cea2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1.08rem;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.13);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .back-btn:hover {
+            background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);
+        }
+        @media (max-width: 900px) {
+            #container {
+                padding: 8px 2px;
+            }
+            table, th, td {
+                font-size: 0.98rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Analysis - ACR HELPER</h1>
+        <button class="back-btn" onclick="window.location.href='marks-entry.html'">Back to Marks Entry</button>
+
+        <div class="section-title">General Analysis</div>
+        <table id="general-analysis">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th id="g-class1">Class 1</th>
+                    <th id="g-class2">Class 2</th>
+                    <th id="g-class3">Class 3</th>
+                    <th id="g-class4">Class 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Result (Pass) %</td>
+                    <td id="pass1"></td>
+                    <td id="pass2"></td>
+                    <td id="pass3"></td>
+                    <td id="pass4"></td>
+                </tr>
+                <tr>
+                    <td>Avg Marks</td>
+                    <td id="avg1"></td>
+                    <td id="avg2"></td>
+                    <td id="avg3"></td>
+                    <td id="avg4"></td>
+                </tr>
+                <tr>
+                    <td>Distinction (≥75)</td>
+                    <td id="dist1"></td>
+                    <td id="dist2"></td>
+                    <td id="dist3"></td>
+                    <td id="dist4"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">Number Wise Analysis</div>
+        <table id="number-analysis">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>&ge;90</th>
+                    <th>&ge;75 &lt;90</th>
+                    <th>&ge;60 &lt;75</th>
+                    <th>&ge;50 &lt;60</th>
+                    <th>&ge;33 &lt;50</th>
+                    <th>&lt;33</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="n-class1">Class 1</td>
+                    <td id="n1-90"></td>
+                    <td id="n1-75"></td>
+                    <td id="n1-60"></td>
+                    <td id="n1-50"></td>
+                    <td id="n1-33"></td>
+                    <td id="n1-0"></td>
+                </tr>
+                <tr>
+                    <td id="n-class2">Class 2</td>
+                    <td id="n2-90"></td>
+                    <td id="n2-75"></td>
+                    <td id="n2-60"></td>
+                    <td id="n2-50"></td>
+                    <td id="n2-33"></td>
+                    <td id="n2-0"></td>
+                </tr>
+                <tr>
+                    <td id="n-class3">Class 3</td>
+                    <td id="n3-90"></td>
+                    <td id="n3-75"></td>
+                    <td id="n3-60"></td>
+                    <td id="n3-50"></td>
+                    <td id="n3-33"></td>
+                    <td id="n3-0"></td>
+                </tr>
+                <tr>
+                    <td id="n-class4">Class 4</td>
+                    <td id="n4-90"></td>
+                    <td id="n4-75"></td>
+                    <td id="n4-60"></td>
+                    <td id="n4-50"></td>
+                    <td id="n4-33"></td>
+                    <td id="n4-0"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">Percentage Wise Analysis: ACR PERFORMA</div>
+        <table id="percent-analysis">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>&ge;90</th>
+                    <th>&ge;75 &lt;90</th>
+                    <th>&ge;60 &lt;75</th>
+                    <th>&ge;50 &lt;60</th>
+                    <th>&ge;33 &lt;50</th>
+                    <th>&lt;33</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="p-class1">Class 1</td>
+                    <td id="p1-90"></td>
+                    <td id="p1-75"></td>
+                    <td id="p1-60"></td>
+                    <td id="p1-50"></td>
+                    <td id="p1-33"></td>
+                    <td id="p1-0"></td>
+                </tr>
+                <tr>
+                    <td id="p-class2">Class 2</td>
+                    <td id="p2-90"></td>
+                    <td id="p2-75"></td>
+                    <td id="p2-60"></td>
+                    <td id="p2-50"></td>
+                    <td id="p2-33"></td>
+                    <td id="p2-0"></td>
+                </tr>
+                <tr>
+                    <td id="p-class3">Class 3</td>
+                    <td id="p3-90"></td>
+                    <td id="p3-75"></td>
+                    <td id="p3-60"></td>
+                    <td id="p3-50"></td>
+                    <td id="p3-33"></td>
+                    <td id="p3-0"></td>
+                </tr>
+                <tr>
+                    <td id="p-class4">Class 4</td>
+                    <td id="p4-90"></td>
+                    <td id="p4-75"></td>
+                    <td id="p4-60"></td>
+                    <td id="p4-50"></td>
+                    <td id="p4-33"></td>
+                    <td id="p4-0"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Get class names
+        const classNames = [
+            localStorage.getItem('class1') || 'Class 1',
+            localStorage.getItem('class2') || 'Class 2',
+            localStorage.getItem('class3') || 'Class 3',
+            localStorage.getItem('class4') || 'Class 4'
+        ];
+        // Set table headers
+        document.getElementById('g-class1').textContent = classNames[0];
+        document.getElementById('g-class2').textContent = classNames[1];
+        document.getElementById('g-class3').textContent = classNames[2];
+        document.getElementById('g-class4').textContent = classNames[3];
+        document.getElementById('n-class1').textContent = classNames[0];
+        document.getElementById('n-class2').textContent = classNames[1];
+        document.getElementById('n-class3').textContent = classNames[2];
+        document.getElementById('n-class4').textContent = classNames[3];
+        document.getElementById('p-class1').textContent = classNames[0];
+        document.getElementById('p-class2').textContent = classNames[1];
+        document.getElementById('p-class3').textContent = classNames[2];
+        document.getElementById('p-class4').textContent = classNames[3];
+
+        // Get marks data from localStorage (must be saved as JSON string in marks-entry.html)
+        // Example structure: [[marks for class1],[marks for class2],[marks for class3],[marks for class4]]
+        let marksData = JSON.parse(localStorage.getItem('marksData') || '[[ ],[ ],[ ],[ ]]');
+// Do  here.............
+// Helper: get stats for a class
+function getStats(marks) {
+    // Filter out null, undefined, and non-numeric values
+    marks = marks.filter(m => m !== null && m !== undefined && !isNaN(m));
+    let total = marks.length;
+    let pass = marks.filter(m => m >= 33).length;
+    let avg = marks.length ? (marks.reduce((a, b) => a + b, 0) / marks.length) : 0;
+    let dist = marks.filter(m => m >= 75).length;
+    // Number wise (do NOT count null/undefined/unentered for <33)
+    let n90 = marks.filter(m => m >= 90).length;
+    let n75 = marks.filter(m => m >= 75 && m < 90).length;
+    let n60 = marks.filter(m => m >= 60 && m < 75).length;
+    let n50 = marks.filter(m => m >= 50 && m < 60).length;
+    let n33 = marks.filter(m => m >= 33 && m < 50).length;
+    // For <33, only count if value is actually entered (not null/undefined)
+    let n0 = marks.filter(m => m < 33).length;
+    return {total, pass, avg, dist, n90, n75, n60, n50, n33, n0};
+}
+
+// Fill all tables
+for (let i = 0; i < 4; i++) {
+    // Only consider entered values (not null/undefined/empty)
+    let marks = (marksData[i] || []).filter(m => m !== null && m !== undefined && m !== "").map(Number).filter(m => !isNaN(m));
+    let s = getStats(marks);
+
+    // General Analysis
+    document.getElementById(`pass${i+1}`).textContent = s.total ? ((s.pass/s.total)*100).toFixed(1) + '%' : '-';
+    document.getElementById(`avg${i+1}`).textContent = s.total ? s.avg.toFixed(2) : '-';
+    document.getElementById(`dist${i+1}`).textContent = s.dist;
+
+    // Number wise
+    document.getElementById(`n${i+1}-90`).textContent = s.n90;
+    document.getElementById(`n${i+1}-75`).textContent = s.n75;
+    document.getElementById(`n${i+1}-60`).textContent = s.n60;
+    document.getElementById(`n${i+1}-50`).textContent = s.n50;
+    document.getElementById(`n${i+1}-33`).textContent = s.n33;
+    document.getElementById(`n${i+1}-0`).textContent = s.n0;
+
+    // Percentage wise
+    document.getElementById(`p${i+1}-90`).textContent = s.total ? ((s.n90/s.total)*100).toFixed(1)+'%' : '-';
+    document.getElementById(`p${i+1}-75`).textContent = s.total ? ((s.n75/s.total)*100).toFixed(1)+'%' : '-';
+    document.getElementById(`p${i+1}-60`).textContent = s.total ? ((s.n60/s.total)*100).toFixed(1)+'%' : '-';
+    document.getElementById(`p${i+1}-50`).textContent = s.total ? ((s.n50/s.total)*100).toFixed(1)+'%' : '-';
+    document.getElementById(`p${i+1}-33`).textContent = s.total ? ((s.n33/s.total)*100).toFixed(1)+'%' : '-';
+    document.getElementById(`p${i+1}-0`).textContent = s.total ? ((s.n0/s.total)*100).toFixed(1)+'%' : '-';
+}
+
+    </script>
+</body>
+</html>
